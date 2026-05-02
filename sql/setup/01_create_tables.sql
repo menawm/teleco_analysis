@@ -3,7 +3,7 @@
 -- Project: Subscriber Lifecycle Analytics
 -- Description: Split raw_telco into normalized tables:
 --              subscribers, subscriptions, and services
--- Author: [Your Name]
+-- Author: Mena Melaku
 -- =============================================================
 
 
