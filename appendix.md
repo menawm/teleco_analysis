@@ -68,11 +68,10 @@ model <- glm(churn_label ~ .,
 ```
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/lr%20model.png" width="700"/>
+  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/lr%20model.png" width="100%"/>
   <br>
   <em>Figure — Logistic regression model output.</em>
 </p>
-
 
 **2.4 Risk Tier Segmentation**
 
