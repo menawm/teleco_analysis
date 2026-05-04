@@ -18,8 +18,13 @@ Using the IBM Telco Customer Churn dataset, surfaced via Google BigQuery (`subsc
 
 This project demonstrates an end-to-end analytics workflow: rigorous methodology, disciplined feature engineering, and insights framed around business impact rather than model mechanics alone.
 
-![Risk Tier Breakdown](https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Risk%20Tier%20Breakdown.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Risk%20Tier%20Breakdown.png" width="700"/>
+  <br>
+  <em>Figure 1 — Subscriber risk tier distribution across the full 7,043-subscriber base.</em>
+</p>
 
+---
 
 ## 2. Data & Methodology
 
