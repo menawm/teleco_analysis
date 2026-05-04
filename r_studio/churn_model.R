@@ -1,0 +1,212 @@
+
+# Connection packages
+library(bigrquery)
+library(DBI)
+
+# Data manipulation and visualization
+library(tidyverse)
+
+# Modeling and evaluation
+library(caret)
+library(pROC)
+library(yardstick)
+
+
+# Authenticate and connect to BigQuery
+bq_auth(scopes = "https://www.googleapis.com/auth/bigquery")
+
+con <- dbConnect(
+  bigrquery::bigquery(),
+  project = "subscriber-lifecycle-analytics",
+  dataset  = "telco_churn",
+  billing  = "subscriber-lifecycle-analytics"
+)
+
+
+
+# Pull master_subscribers from BigQuery into R
+df <- dbGetQuery(con, "SELECT * FROM `subscriber-lifecycle-analytics.telco_churn.master_subscribers`")
+
+# Preview the data
+glimpse(df)
+
+
+# Select only the columns we need
+df_clean <- df %>%
+  select(
+    # Outcome variable
+    churn_label,
+    
+    # Demographics
+    age, gender, senior_citizen, married,
+    
+    # Subscription behavior
+    # Note: total_charges was removed due to high multicollinearity 
+    # with tenure_months (r = 0.83). Including both variables would 
+    # confuse the model since they measure essentially the same thing —
+    # longer subscribers naturally accumulate higher total charges.
+    # Note: satisfaction_score removed — abnormally large standard error (583.92)
+    # indicates complete separation, making the coefficient unreliable.
+    tenure_months, monthly_charge,
+    cltv, contract_type, payment_method,
+    
+    # Services
+    phone_service, internet_type,
+    streaming_tv, streaming_movies, streaming_music,
+    online_security, online_backup, device_protection
+  ) %>%
+  
+  # Convert outcome variable to factor
+  mutate(churn_label = factor(churn_label, 
+                              levels = c(FALSE, TRUE), 
+                              labels = c("No", "Yes"))) %>%
+  
+  # Convert categorical columns to factors
+  mutate(across(c(gender, senior_citizen, married, contract_type,
+                  payment_method, phone_service,
+                  internet_type, streaming_tv, streaming_movies,
+                  streaming_music, online_security, online_backup,
+                  device_protection), as.factor)) %>%
+  
+  # Remove any rows with missing values
+  drop_na()
+
+# Confirm the cleaned data
+glimpse(df_clean)
+
+# Check churn balance
+table(df_clean$churn_label)
+
+
+
+
+# Set a seed so results are reproducible
+set.seed(42)
+
+# Scale numeric variables so they are on the same scale
+df_model <- df_clean %>%
+  mutate(across(c(age, tenure_months, monthly_charge, 
+                  cltv), scale))
+
+# Set reference levels for key categorical variables
+df_model <- df_model %>%
+  mutate(
+    contract_type   = relevel(contract_type, ref = "Month-to-Month"),
+    internet_type   = relevel(internet_type, ref = "None"),
+    payment_method  = relevel(payment_method, ref = "Credit Card")
+  )
+
+summary(df_model[, c("age", "tenure_months", "monthly_charge", 
+                     "cltv")])
+
+nearZeroVar(df_model, saveMetrics = TRUE)
+
+
+# Split data into 80% training and 20% testing
+train_index <- createDataPartition(df_model$churn_label, p = 0.8, list = FALSE)
+train_data  <- df_model[train_index, ]
+test_data   <- df_model[-train_index, ]
+
+# Confirm the split
+cat("Training rows:", nrow(train_data), "\n")
+cat("Test rows:", nrow(test_data), "\n")
+
+# Calculate class weights to handle imbalance
+weight_no  <- nrow(train_data) / (2 * sum(train_data$churn_label == "No"))
+weight_yes <- nrow(train_data) / (2 * sum(train_data$churn_label == "Yes"))
+weights    <- ifelse(train_data$churn_label == "Yes", weight_yes, weight_no)
+
+
+# Build the logistic regression model
+model <- glm(churn_label ~ .,
+             data    = train_data,
+             family  = binomial,
+             weights = weights)
+
+# View model summary
+summary(model)
+
+
+
+# Generate predictions on the test data
+test_probs <- predict(model, newdata = test_data, type = "response")
+
+# Convert probabilities to Yes/No using 0.5 threshold
+test_preds <- ifelse(test_probs > 0.5, "Yes", "No")
+test_preds <- factor(test_preds, levels = c("No", "Yes"))
+
+# Confusion matrix
+conf_matrix <- confusionMatrix(test_preds, test_data$churn_label, positive = "Yes")
+print(conf_matrix)
+
+# ROC curve
+roc_obj <- roc(test_data$churn_label, test_probs, levels = c("No", "Yes"))
+plot(roc_obj, 
+     main = "ROC Curve — Churn Prediction Model",
+     col  = "#2c7bb6",
+     lwd  = 2)
+abline(a = 0, b = 1, lty = 2, col = "gray")
+
+# Print AUC
+cat("AUC:", auc(roc_obj), "\n")
+
+
+# Extract model coefficients and convert to odds ratios
+predictors <- broom::tidy(model) %>%
+  filter(term != "(Intercept)") %>%
+  mutate(
+    odds_ratio = exp(estimate),
+    direction  = ifelse(estimate > 0, "Increases Churn", "Decreases Churn")
+  ) %>%
+  arrange(desc(abs(estimate)))
+
+# View the top predictors
+print(predictors)
+
+# Visualize top 15 predictors
+predictors %>%
+  slice(1:15) %>%
+  ggplot(aes(x = reorder(term, estimate), 
+             y = estimate, 
+             fill = direction)) +
+  geom_col() +
+  coord_flip() +
+  scale_fill_manual(values = c("Increases Churn" = "#d73027", 
+                               "Decreases Churn" = "#2c7bb6")) +
+  labs(
+    title    = "Top Predictors of Churn",
+    subtitle = "Logistic Regression Coefficients",
+    x        = "Predictor",
+    y        = "Coefficient (log-odds)",
+    fill     = ""
+  ) +
+  theme_minimal()
+
+
+# Generate churn probabilities for the full dataset
+df_model$churn_probability <- predict(model, 
+                                      newdata = df_model, 
+                                      type = "response")
+
+# Convert probability to a Yes/No prediction
+df_model$churn_prediction <- ifelse(df_model$churn_probability > 0.5, 
+                                    "Yes", "No")
+
+# Add customer_id back from the original dataframe
+df_export <- df_model %>%
+  mutate(customer_id = df$customer_id) %>%
+  select(customer_id, churn_probability, churn_prediction)
+
+# Preview the export
+head(df_export)
+
+# Export as CSV
+write.csv(df_export, 
+          "../data/churn_predictions.csv", 
+          row.names = FALSE)
+
+cat("Export complete —", nrow(df_export), "rows saved to data/churn_predictions.csv\n")
+
+
+
+
