@@ -23,7 +23,7 @@ library(pROC)
 library(yardstick)
 ```
 
-```{r connect}
+```{r connect, include=FALSE}
 # Authenticate and connect to BigQuery
 bq_auth(scopes = "https://www.googleapis.com/auth/bigquery")
 
@@ -35,7 +35,7 @@ con <- dbConnect(
 )
 ```
 
-```{r pull-data}
+```{r pull-data, include=TRUE}
 # Pull master_subscribers from BigQuery into R
 df <- dbGetQuery(con, "SELECT * FROM `subscriber-lifecycle-analytics.telco_churn.master_subscribers`")
 
@@ -43,7 +43,7 @@ df <- dbGetQuery(con, "SELECT * FROM `subscriber-lifecycle-analytics.telco_churn
 glimpse(df)
 ```
 
-```{r clean-data}
+```{r clean-data, include=TRUE}
 # Select only the columns we need
 df_clean <- df %>%
   select(
@@ -92,7 +92,7 @@ table(df_clean$churn_label)
 ```
 
 
-```{r check_data}
+```{r check_data, include=TRUE}
 # Set a seed so results are reproducible
 set.seed(42)
 
@@ -116,7 +116,7 @@ nearZeroVar(df_model, saveMetrics = TRUE)
 
 ```
 
-```{r split data}
+```{r split data, include=TRUE}
 # Split data into 80% training and 20% testing
 train_index <- createDataPartition(df_model$churn_label, p = 0.8, list = FALSE)
 train_data  <- df_model[train_index, ]
@@ -132,7 +132,7 @@ weight_yes <- nrow(train_data) / (2 * sum(train_data$churn_label == "Yes"))
 weights    <- ifelse(train_data$churn_label == "Yes", weight_yes, weight_no)
 ```
 
-```{r build-model}
+```{r build-model, include=TRUE}
 # Build the logistic regression model
 model <- glm(churn_label ~ .,
              data    = train_data,
@@ -144,7 +144,7 @@ summary(model)
 ```
 
 
-```{r evaluate-model}
+```{r evaluate-model, include=TRUE}
 # Generate predictions on the test data
 test_probs <- predict(model, newdata = test_data, type = "response")
 
@@ -169,7 +169,7 @@ cat("AUC:", auc(roc_obj), "\n")
 ```
 
 
-```{r top-predictors}
+```{r top-predictors, include=TRUE}
 # Extract model coefficients and convert to odds ratios
 predictors <- broom::tidy(model) %>%
   filter(term != "(Intercept)") %>%
@@ -203,7 +203,7 @@ predictors %>%
 ```
 
 
-```{r export-predictions}
+```{r export-predictions, include=TRUE}
 # Generate churn probabilities for the full dataset
 df_model$churn_probability <- predict(model, 
                                        newdata = df_model, 
