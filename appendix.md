@@ -68,7 +68,7 @@ model <- glm(churn_label ~ .,
 ```
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/lr%20model.png" width="400" height="300"/>
+  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/lr%20model.png" width="400" height="400"/>
   <br>
   <em>Figure — Logistic regression model output.</em>
 </p>
