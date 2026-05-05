@@ -87,7 +87,7 @@ Predicted churn probabilities from the model were used to segment all 7,043 subs
 Monthly revenue at risk was calculated for each tier by aggregating the `monthly_charge` values of subscribers within that segment.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Churn%20Probability%20Distribution.png" width="600" height="400"/>
+  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Churn%20Probability%20Distribution.png" width="550" height="400"/>
   <br>
   <em>Figure — Distribution of predicted churn probabilities across all 7,043 subscribers.</em>
 </p>
@@ -158,7 +158,7 @@ The logistic regression coefficients quantify the direction and magnitude of eac
 **Contract type is the single strongest predictor of churn** — in either direction. Subscribers on two-year contracts are dramatically less likely to churn than the Month-to-Month baseline, while higher monthly charges and friction-prone payment methods meaningfully elevate risk.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/lr%20top%20predictors%20of%20churn.png" width="400" height="600"/>
+  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/lr%20top%20predictors%20of%20churn.png" width="400" height="500"/>
   <br>
   <em>Figure — Top predictors of churn by log-odds coefficient magnitude.</em>
 </p>
