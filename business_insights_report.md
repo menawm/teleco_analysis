@@ -2,41 +2,56 @@
 
 Subscription businesses live or die by retention. This report presents the findings of an end-to-end churn analysis of 7,043 IBM Telco subscribers — covering churn scale, cost, predictive modeling, and a prioritized retention strategy — built to answer one question: **where is revenue at risk, and what do we do about it?**
 
-
 **The Problem**
 
-At **26.54%, the overall churn rate is more than four times the 5–7% benchmark** for healthy subscription businesses. The business is sitting on **$21.37 million in total monthly revenue** — but **$144,796 of it sits in the Critical and High risk tiers alone**, exposed to churn without an active retention mechanism in place. Left unaddressed, that's **$1.74 million in annualized revenue** at risk from the two highest-priority subscriber segments.
+| Metric | Value |
+|---|---|
+| Overall Churn Rate | **26.54%** — 1 in 4 subscribers lost |
+| Total Revenue Base | **$21.37M** monthly |
+| Critical + High Risk Exposure | **$144,796** monthly |
+| Annualized Revenue at Risk | **$1.74 million** |
+
 
 **What the Data Shows**
 
-Three findings stand above the rest:
+> **Contract type is the single strongest retention lever.**
+Month-to-Month subscribers churn at 45.84%. Two Year subscribers churn at just 2.55% and generate nearly 3x the lifetime revenue.
 
-- **Contract type is the single strongest retention lever.** Month-to-Month subscribers churn at 45.84%. Two Year subscribers churn at 2.55% and generate nearly three times the lifetime revenue. The opportunity to move subscribers up the contract ladder is large and measurable.
-- **The first six months are make or break.** New subscribers churn at 53.33% with an average satisfaction score of 2.79. Subscribers who make it to 49+ months churn at just 9.51%. The onboarding window is the highest-leverage moment in the entire subscriber lifecycle.
-- **Churn is not random.** Senior citizens, Mailed Check subscribers, and Month-to-Month subscribers are losing at dramatically higher rates than the base — and **45% of all churn is competitor-driven**, meaning subscribers are being actively poached, not passively drifting away.
+> **The first six months are make or break.**
+New subscribers churn at 53.33%. Subscribers who reach 49+ months churn at just 9.51%. The onboarding window is the highest-leverage moment in the lifecycle.
+
+> **Churn is not random.**
+45% of all churn is competitor-driven. Senior citizens, Mailed Check subscribers, and Month-to-Month subscribers are all losing at dramatically higher rates than the base.
 
 **What the Model Does**
 
-A logistic regression model scores every subscriber with a churn probability and routes them into one of four risk tiers. The model correctly identifies **4 out of 5 subscribers who will churn** (sensitivity: 82%). At the Critical threshold alone, **1,081 subscribers** are flagged for immediate retention outreach — a prioritized, actionable list that Customer Success and Marketing teams can act on today [See Technical Report].
+- Scores every subscriber with a **churn probability between 0 and 1**
+- Routes subscribers into **four risk tiers**: Critical, High, Medium, Low
+- Correctly identifies **4 out of 5 subscribers who will churn** (sensitivity: 82%)
+- Flags **1,081 Critical subscribers** for immediate retention outreach [See Technical Report]
 
 **What We Recommend**
 
-Six retention initiatives are prioritized by business impact:
-
-1. **A 90-day onboarding program** to move new subscribers past the highest-risk window
-2. **Contract upgrade incentives** to shift Month-to-Month subscribers onto annual plans
-3. **A dedicated senior citizen retention track** to close a churn gap that generic programs aren't addressing
-4. **A Mailed Check migration campaign** to eliminate payment friction as a churn driver
-5. **Online security as a default onboarding step** — the single feature most correlated with retention
-6. **CRM integration of churn scores** to trigger proactive outreach the moment a subscriber crosses the 0.75 risk threshold
-
+| Priority | Action |
+|---|---|
+| 1 | **90-day onboarding program** to move new subscribers past the highest-risk window |
+| 2 | **Contract upgrade incentives** to shift Month-to-Month subscribers to annual plans |
+| 3 | **Senior citizen retention track** to close a churn gap generic programs aren't addressing |
+| 4 | **Mailed Check migration campaign** to eliminate payment friction as a churn driver |
+| 5 | **Online security as a default onboarding step** — the feature most correlated with retention |
+| 6 | **CRM integration of churn scores** to trigger outreach at the 0.75 risk threshold |
 
 **The Opportunity**
 
-A conservative retention effort that saves just **10% of Critical and High risk subscribers recovers $173,755 in annual revenue**. A moderate effort recovers **$347,510**. The model has already done the work of identifying who to reach — the remaining question is how quickly the business moves to act on it.
+| Scenario | Subscribers Retained | Annual Revenue Recovered |
+|---|---|---|
+| Conservative (10%) | 240 | **$173,755** |
+| Moderate (20%) | 481 | **$347,510** |
+| Ambitious (30%) | 721 | **$521,265** |
 
----
-## 2. Key Findings
+The model has already identified who to reach. The remaining question is how quickly the business moves to act on it.
+
+**2. Key Findings**
 
 The analysis of 7,043 IBM Telco subscribers surfaces a clear story: churn is expensive, predictable, and — most importantly — preventable. The findings below are organized around the business questions that matter most.
 
@@ -49,7 +64,6 @@ The analysis of 7,043 IBM Telco subscribers surfaces a clear story: churn is exp
 - **Combined monthly exposure: $144,796** — revenue the business could lose without a retention strategy in place
 
 At this scale, churn isn't a customer service problem. It's a revenue problem.
-
 
 **Contract Structure Is the Strongest Retention Lever**
 
