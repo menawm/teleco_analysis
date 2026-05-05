@@ -13,7 +13,9 @@ An end-to-end subscriber lifecycle and churn analytics project built on the IBM 
 
 This project answers a core business question: **which subscribers are most at risk of churning, and what can be done about it?** Starting from raw customer data, the pipeline moves through data modeling and cleaning in BigQuery, lifecycle segmentation and KPI development in SQL, predictive scoring in R, and finally an interactive Tableau dashboard that surfaces high-risk segments and revenue exposure in real time.
 
-[**→ View Live Dashboard**](https://public.tableau.com/views/SubscriberChurnRiskIntelligenceLogisticRegressionBigQueryRTableau/SubscriberChurnRiskIntelligence?:language=en-US&:sid=&:redirect=auth&:display\_count=n&:origin=viz\_share\_link)
+[**→ View Live Dashboard**](https://public.tableau.com/views/SubscriberChurnRiskIntelligenceLogisticRegressionBigQueryRTableau/SubscriberChurnRiskIntelligence?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link) · 
+[**→ Read the Business Insights Report**](https://github.com/menawm/teleco_analysis/blob/main/business_insights_report.md) · 
+[**→ Read the Technical Appendix**](https://github.com/menawm/teleco_analysis/blob/main/appendix.md)
 
 ---
 
