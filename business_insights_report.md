@@ -28,7 +28,7 @@ New subscribers churn at 53.33%. Subscribers who reach 49+ months churn at just 
 - Scores every subscriber with a **churn probability between 0 and 1**
 - Routes subscribers into **four risk tiers**: Critical, High, Medium, Low
 - Correctly identifies **4 out of 5 subscribers who will churn** (sensitivity: 82%)
-- Flags **1,081 Critical subscribers** for immediate retention outreach [See Technical Report]
+- Flags **1,081 Critical subscribers** for immediate retention outreach [See Appendix](https://github.com/menawm/teleco_analysis/blob/main/appendix.md)
 
 **What We Recommend**
 
@@ -73,7 +73,7 @@ At this scale, churn isn't a customer service problem. It's a revenue problem.
 | One Year | 10.71% | — |
 | Two Year | 2.55% | $4,799 |
 
-No single factor separates churners from stayers more clearly than contract type. **Two Year subscribers churn at just 2.55%** and generate nearly **three times the lifetime revenue** of Month-to-Month subscribers. The predictive model confirms contract type as the **single strongest churn predictor in either direction** [See Technical Report].
+No single factor separates churners from stayers more clearly than contract type. **Two Year subscribers churn at just 2.55%** and generate nearly **three times the lifetime revenue** of Month-to-Month subscribers. The predictive model confirms contract type as the **single strongest churn predictor in either direction** [See Appendix](https://github.com/menawm/teleco_analysis/blob/main/appendix.md)
 
 Moving subscribers off monthly agreements isn't just a retention play — it's a lifetime value play.
 
@@ -104,7 +104,7 @@ The churn prediction model transforms raw subscriber data into a prioritized act
 
 **How the Model Works in Practice**
 
-- Every subscriber receives a **churn probability score between 0 and 1** — the closer to 1, the more likely they are to leave [See Technical Report]
+- Every subscriber receives a **churn probability score between 0 and 1** — the closer to 1, the more likely they are to leave [[See Appendix](https://github.com/menawm/teleco_analysis/blob/main/appendix.md)
 - Scores are grouped into **four risk tiers** that map directly to business action:
 
 | Risk Tier | Probability Range | Subscriber Count |
@@ -114,7 +114,7 @@ The churn prediction model transforms raw subscriber data into a prioritized act
 | Medium | 0.25 – 0.49 | 1,556 |
 | Low | < 0.25 | 3,083 |
 
-- The model correctly identifies **4 out of 5 subscribers who will churn** (sensitivity: 82%) [See Technical Report]
+- The model correctly identifies **4 out of 5 subscribers who will churn** (sensitivity: 82%) [[See Appendix](https://github.com/menawm/teleco_analysis/blob/main/appendix.md)
 - Scores can be exported and **refreshed as new subscriber data becomes available**, keeping the priority list current
 
 
