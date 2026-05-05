@@ -87,7 +87,7 @@ Predicted churn probabilities from the model were used to segment all 7,043 subs
 Monthly revenue at risk was calculated for each tier by aggregating the `monthly_charge` values of subscribers within that segment.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Churn%20Probability%20Distribution.png" width="700"/>
+  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Churn%20Probability%20Distribution.png" width="400" height="300"/>
   <br>
   <em>Figure — Distribution of predicted churn probabilities across all 7,043 subscribers.</em>
 </p>
@@ -130,7 +130,7 @@ The asymmetry between false positives and false negatives reflects the deliberat
 **3.3 ROC Curve**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/ROC%20Curve%20.png" width="700"/>
+  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/ROC%20Curve%20.png" width="400" height="300"/>
   <br>
   <em>Figure — ROC curve demonstrating model discriminative ability (AUC = 0.8719).</em>
 </p>
@@ -158,7 +158,7 @@ The logistic regression coefficients quantify the direction and magnitude of eac
 **Contract type is the single strongest predictor of churn** — in either direction. Subscribers on two-year contracts are dramatically less likely to churn than the Month-to-Month baseline, while higher monthly charges and friction-prone payment methods meaningfully elevate risk.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/lr%20top%20predictors%20of%20churn.png" width="700"/>
+  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/lr%20top%20predictors%20of%20churn.png" width="400" height="300"/>
   <br>
   <em>Figure — Top predictors of churn by log-odds coefficient magnitude.</em>
 </p>
@@ -168,7 +168,7 @@ The logistic regression coefficients quantify the direction and magnitude of eac
 Month-to-Month subscribers churn at a rate of **45.8%** — more than 18x the rate of Two Year subscribers at **2.5%**. This gap is the most operationally significant finding in the analysis: contract structure is not merely correlated with retention, it is its strongest lever.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Churn%20by%20Contract.png" width="700"/>
+  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Churn%20by%20Contract.png" width="400" height="300"/>
   <br>
   <em>Figure — Churn rate by contract type: Month-to-Month (45.8%) vs. Two Year (2.5%).</em>
 </p>
@@ -179,7 +179,7 @@ Month-to-Month subscribers churn at a rate of **45.8%** — more than 18x the ra
 Subscribers paying by **Mailed Check churn at 36.9%**, compared to **14.5%** for Credit Card users. This likely reflects a combination of lower engagement and higher payment friction — both indicators of shallow product commitment. Automated payment methods correlate with stronger retention across the board.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Churn%20by%20Payment%20Method.png" width="700"/>
+  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Churn%20by%20Payment%20Method.png" width="400" height="300"/>
   <br>
   <em>Figure — Churn rate by payment method: Mailed Check (36.9%) vs. Credit Card (14.5%).</em>
 </p>
@@ -190,7 +190,7 @@ Subscribers paying by **Mailed Check churn at 36.9%**, compared to **14.5%** for
 Senior citizens churn at **41.7%** versus **23.6%** for non-seniors, a gap of 18 percentage points. This segment warrants dedicated retention attention, whether through simplified user experience, targeted support, or tailored plan structures.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Churn%20by%20Senior%20Citizen.png" width="700"/>
+  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Churn%20by%20Senior%20Citizen.png" width="400" height="300"/>
   <br>
   <em>Figure — Churn rate by senior citizen status: Senior (41.7%) vs. Non-Senior (23.6%).</em>
 </p>
@@ -200,7 +200,7 @@ Senior citizens churn at **41.7%** versus **23.6%** for non-seniors, a gap of 18
 Gender was not a meaningful predictor of churn. Churn rates are nearly identical across male and female subscribers, suggesting that retention strategies should not be segmented by gender and that resources are better directed toward contract type, payment behavior, and demographic risk factors.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Churn%20by%20Gender.png" width="700"/>
+  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Churn%20by%20Gender.png" width="400" height="300"/>
   <br>
   <em>Figure — Churn rate by gender, showing no meaningful difference between male and female subscribers.</em>
 </p>
@@ -219,19 +219,19 @@ Aggregating monthly charges across risk tiers reveals the financial exposure con
 **$144,796 in monthly recurring revenue** is at elevated risk across the Critical and High tiers alone, making these segments the clear priority for any retention intervention.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Revenue%20at%20Risk.png" width="700"/>
+  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Revenue%20at%20Risk.png" width="400" height="300"/>
   <br>
   <em>Figure — Monthly revenue at risk by subscriber risk tier.</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Lifetime%20Value%20at%20Risk.png" width="700"/>
+  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Lifetime%20Value%20at%20Risk.png" width="400" height="300"/>
   <br>
   <em>Figure — Estimated lifetime value at risk across Critical and High risk tiers.</em>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Intervention%20Priority.png" width="700"/>
+  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Intervention%20Priority.png" width="400" height="300"/>
   <br>
   <em>Figure — Intervention priority matrix mapping risk tier to revenue exposure.</em>
 </p>
@@ -252,7 +252,7 @@ No model is without constraints. The following limitations are documented transp
 The dataset is **geographically limited to California**. Churn dynamics — including the influence of contract norms, competitive alternatives, and demographic composition — vary meaningfully across markets. Findings should not be generalized to a national or global subscriber base without revalidation on broader data.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Churn%20by%20City.png" width="700"/>
+  <img src="https://raw.githubusercontent.com/menawm/teleco_analysis/main/assets/Churn%20by%20City.png" width="400" height="300"/>
   <br>
   <em>Figure — Churn rate by city, highlighting the geographic concentration of the dataset within California.</em>
 </p>
