@@ -1,4 +1,4 @@
-# Subscriber Churn Risk Intelligence
+# Subscriber Lifecycle Churn Risk & Retention Analytics
 ![BigQuery](https://img.shields.io/badge/Google\_BigQuery-4285F4?style=flat&logo=googlebigquery&logoColor=white)
 ![SQL](https://img.shields.io/badge/SQL-F46800?style=flat&logo=databricks&logoColor=white)
 ![R](https://img.shields.io/badge/R-276DC3?style=flat&logo=r&logoColor=white)
